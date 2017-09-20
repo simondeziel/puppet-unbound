@@ -1,0 +1,27 @@
+<%- | Hash $options |
+# conf
+-%>
+# File managed by Puppet
+<%
+  $options.keys.each |$k| {
+     $v = $options[$k]
+     if $v =~ Hash { -%>
+<%= $k %>:
+<%     $v.keys.each |$key| {
+         $value = $v[$key]
+         if $value =~ Array {
+           $value.flatten.each |$value| { -%>
+  <%= $key %>: <%= $value %>
+<%         }
+         } else { -%>
+  <%= $key %>: <%= $v[$key] %>
+<%       }
+       }
+     } elsif $v =~ Array {
+       $v.flatten.each |$value| { -%>
+  <%= $k %>: <%= $value %>
+<%     }
+     } else { -%>
+  <%= $k %>: <%= $v %>
+<%   }
+  } -%>
