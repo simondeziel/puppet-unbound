@@ -22,5 +22,4 @@ class unbound (
   -> Class['::unbound::config']
   -> Class['::unbound::exec']
   -> Class['::unbound::service']
-
 }
