@@ -14,7 +14,7 @@ class unbound::params {
   $purge_cfg_dir      = true
 
   $server_options     = {
-    'verbosity'             => 2,
+    'verbosity'             => 1,
     'num-threads'           => 1,
     'interface'             => ['0.0.0.0','::0'],
     'identity'              => '"rdns"',
