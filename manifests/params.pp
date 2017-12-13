@@ -19,7 +19,6 @@ class unbound::params {
     'interface'             => ['0.0.0.0','::0'],
     'identity'              => '"rdns"',
     'hide-version'          => 'yes',
-    'hide-version'          => 'yes',
     'prefetch'              => 'yes',
     'prefetch-key'          => 'yes',
     # may provide a slight speedup and avoid TCP fallback
