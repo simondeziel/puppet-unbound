@@ -4,24 +4,24 @@
 # File managed by Puppet
 <%
   $options.keys.each |$k| {
-     $v = $options[$k]
-     if $v =~ Hash { -%>
+    $v = $options[$k]
+    if $v =~ Hash { -%>
 <%= $k %>:
-<%     $v.keys.each |$key| {
-         $value = $v[$key]
-         if $value =~ Array {
-           $value.flatten.each |$value| { -%>
+<%    $v.keys.each |$key| {
+        $value = $v[$key]
+        if $value =~ Array {
+          $value.flatten.each |$value| { -%>
   <%= $key %>: <%= $value %>
-<%         }
-         } else { -%>
+<%        }
+        } else { -%>
   <%= $key %>: <%= $v[$key] %>
-<%       }
-       }
-     } elsif $v =~ Array {
-       $v.flatten.each |$value| { -%>
+<%      }
+      }
+    } elsif $v =~ Array {
+      $v.flatten.each |$value| { -%>
   <%= $k %>: <%= $value %>
-<%     }
-     } else { -%>
+<%    }
+    } else { -%>
   <%= $k %>: <%= $v %>
-<%   }
+<%  }
   } -%>
