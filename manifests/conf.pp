@@ -6,13 +6,12 @@ define unbound::conf (
   Stdlib::Absolutepath $target_file = "${unbound::cfg_dir}/${name}",
 ) {
   if $ensure == 'present' and ! $options {
-    fail("${module_name} requires an options hash to be defined when the conf is present")
+    fail('unbound::conf requires an options hash to be defined when the conf is present')
   }
 
-  if $ensure == 'present' {
-    $content = epp('unbound/conf.epp', { 'options' => $options })
-  } else {
-    $content = undef
+  $content = $ensure ? {
+   'present' => epp('unbound/conf.epp', { 'options' => $options, }),
+    default  => undef,
   }
 
   file { $target_file:

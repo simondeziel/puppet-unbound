@@ -7,10 +7,9 @@ class unbound::config inherits unbound {
     target_file => $cfg_file,
   }
 
-  if $purge_cfg_dir {
-    $cfg_dir_recurse = true
-  } else {
-    $cfg_dir_recurse = remote
+  $cfg_dir_recurse = $purge_cfg_dir ? {
+    true    => true,
+    default => 'remote'
   }
 
   file { $cfg_dir:
